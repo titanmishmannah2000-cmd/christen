@@ -14,6 +14,7 @@ export const TRANSLATIONS = {
   esv: { id: 'esv', lang: 'en', language: 'English', name: 'English Standard Version', short: 'ESV', online: 'esv' },
   // From API.Bible, under its terms (Starter plan, non-commercial).
   nasb: { id: 'nasb', lang: 'en', language: 'English', name: 'New American Standard Bible', short: 'NASB', online: 'apibible', abbr: 'NASB' },
+  niv: { id: 'niv', lang: 'en', language: 'English', name: 'New International Version', short: 'NIV', online: 'apibible', abbr: 'NIV' },
   csb: { id: 'csb', lang: 'en', language: 'English', name: 'Christian Standard Bible', short: 'CSB', online: 'apibible', abbr: 'CSB' },
   // The Good News Translation (US Version) with the Deuterocanonical books, from the
   // American Bible Society through API.Bible.

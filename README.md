@@ -47,7 +47,7 @@ service's terms for free, non-commercial apps (`src/lib/online.js`):
 
 - **ESV**: from [api.esv.org](https://api.esv.org/) (Crossway). At most 500 verses are kept on
   the device, Crossway's notice is shown under every chapter, and each chapter links to esv.org.
-- **NASB, CSB and the Good News Translation**: from [API.Bible](https://api.bible/) (Starter
+- **NIV, NASB, CSB and the Good News Translation**: from [API.Bible](https://api.bible/) (Starter
   plan). The copyright is shown with the text and each view is reported (FUMS).
 
 Copy `.env.example` to `.env` and fill in the keys (made in your own name). A Bible whose key

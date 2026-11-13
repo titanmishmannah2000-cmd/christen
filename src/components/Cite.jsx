@@ -40,6 +40,7 @@ const TEXT_SOURCE = {
   esv: ['Crossway', '2001', 'https://www.esv.org/'],
   nasb: ['The Lockman Foundation', null, 'https://www.lockman.org/'],
   csb: ['Holman Bible Publishers', '2017', 'https://csbible.com/'],
+  niv: ['Biblica', '2011', 'https://www.biblica.com/'],
   dra: ['scrollmapper bible_databases', null, 'https://github.com/scrollmapper/bible_databases'],
   es: ['scrollmapper bible_databases', null, 'https://github.com/scrollmapper/bible_databases'],
   fr: ['Beblia Holy Bible XML', null, 'https://github.com/Beblia/Holy-Bible-XML-Format'],

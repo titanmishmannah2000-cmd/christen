@@ -9,7 +9,7 @@ import { useT } from '../lib/i18n'
 // the Catholic Bible with its 73 books, and other languages, each with a line on what
 // it is. On phones it rises from the bottom; on wider screens it sits in the middle.
 const TEXT_GROUPS = [
-  { title: 'English', ids: ['web', 'esv', 'nasb', 'csb'] },
+  { title: 'English', ids: ['web', 'esv', 'niv', 'nasb', 'csb'] },
   { title: 'Catholic Bible, 73 books', ids: ['dra', 'gnb'] },
   { title: 'Other languages', ids: ['es', 'fr', 'pt', 'ur'] },
 ]
@@ -17,6 +17,7 @@ const TEXT_ABOUT = {
   web: 'Modern English, free for anyone to share. Every note in the app is written beside it.',
   esv: 'A close, word-for-word modern translation, from Crossway.',
   nasb: 'One of the most literal English translations, loved for careful study. From the Lockman Foundation.',
+  niv: 'The most widely read modern English translation, clear and accurate. From Biblica.',
   csb: 'Faithful to the original words and easy to read. It replaced the HCSB in 2017.',
   gnb: 'Plain, everyday American English, from the American Bible Society: the Catholic edition, with Tobit, Judith, Wisdom, Sirach, Baruch and 1 and 2 Maccabees.',
   dra: 'The classic English Bible of Catholics, with Tobit, Judith, Wisdom, Sirach, Baruch and 1 and 2 Maccabees.',

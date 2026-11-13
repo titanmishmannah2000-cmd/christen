@@ -276,6 +276,7 @@ const API = (import.meta.env.VITE_API_BIBLE_URL || 'https://rest.api.bible/v1').
 const ID_OVERRIDES = {
   NASB: import.meta.env.VITE_API_BIBLE_NASB_ID,
   CSB: import.meta.env.VITE_API_BIBLE_CSB_ID,
+  NIV: import.meta.env.VITE_API_BIBLE_NIV_ID,
   // Good News Translation (US Version), with the Deuterocanonical books.
   GNTD: import.meta.env.VITE_API_BIBLE_GNTD_ID || '61fd76eafa1577c2-01',
 }
