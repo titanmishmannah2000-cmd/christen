@@ -89,7 +89,7 @@ export default function BibleTextSheet({ open, onClose }) {
         {TEXT_GROUPS.map((g, gi) => (
           <section key={g.title} className="text-group" aria-labelledby={`texts-g${gi}`}>
             <h3 className="text-group-h" id={`texts-g${gi}`}>{t(g.title)}</h3>
-            <ul className="text-pick">{g.ids.filter(isAvailable).map(k => <Option key={k} k={k} current={id} t={t} onPick={pick} />)}</ul>
+            <ul className="text-pick">{g.ids.map(k => <Option key={k} k={k} current={id} t={t} onPick={pick} />)}</ul>
           </section>
         ))}
         {isOnline(id) && <p className="set-help">{t('The {name} is read from its publisher over the internet, a chapter at a time, as its license asks. Search and the side-by-side accounts use the World English Bible.', { name: TRANSLATIONS[id].name })}</p>}
