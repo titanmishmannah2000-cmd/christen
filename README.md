@@ -51,7 +51,9 @@ service's terms for free, non-commercial apps (`src/lib/online.js`):
   plan). The copyright is shown with the text and each view is reported (FUMS).
 
 Copy `.env.example` to `.env` and fill in the keys (made in your own name). A Bible whose key
-is not set is simply not offered. The keys are never committed: `.env` is in `.gitignore`. On
+is not set shows greyed out as "Not set up yet". The NASB also needs its own
+API.Bible id (`VITE_API_BIBLE_NASB_ID`), set only once it is part of your API.Bible plan or
+Lockman has given permission. The keys are never committed: `.env` is in `.gitignore`. On
 Vercel, add them under Project Settings > Environment Variables. Note that a `VITE_` key is
 built into the site's JavaScript, so anyone can read it there; use keys from free plans only.
 

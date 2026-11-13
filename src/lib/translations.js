@@ -60,9 +60,13 @@ export const translationId = () => current
 // Copyrighted texts can be chosen only once the app has its key for the publisher's service.
 const KEYS = { esv: import.meta.env.VITE_ESV_KEY, apibible: import.meta.env.VITE_API_BIBLE_KEY }
 export const onlineKey = (kind) => KEYS[kind] || ''
+// The NASB is offered only once its own API.Bible id is set: it is not part of the owner's
+// API.Bible plan, so a key alone must not turn it on. (The CSB and GNT are in the plan.)
+const NEEDS_OWN_ID = { NASB: import.meta.env.VITE_API_BIBLE_NASB_ID }
 export const isAvailable = (id) => {
   const tr = TRANSLATIONS[id]
   if (!tr) return false
+  if (tr.abbr in NEEDS_OWN_ID && !NEEDS_OWN_ID[tr.abbr]) return false
   return !tr.online || !!onlineKey(tr.online)
 }
 export const isCatholic = (id = current) => !!TRANSLATIONS[id]?.catholic
