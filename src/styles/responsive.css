@@ -1,0 +1,72 @@
+/* No room for the margin beside the text (narrow window, or the Atlas is open):
+   one column, with notes and the painting folded into the text. Matches WIDE_READER in Reader.jsx. */
+@container reader (max-width: 859px) {
+  .reader-inner { grid-template-columns: minmax(0, 1fr); padding-left: 40px; }
+  .gloss-col { display: none; }
+  .gloss.inline { margin: 4px 0 18px 44px; }
+}
+@media (max-width: 1100px) {
+  .mark-word, .rail { width: 176px; }
+  .rail { padding-left: max(22px, env(safe-area-inset-left, 0px)); padding-right: 18px; }
+  .mark-word { padding-left: max(22px, env(safe-area-inset-left, 0px)); font-size: 20px; letter-spacing: 0.26em; }
+  .numeral { font-size: 96px; }
+  .numeral.is-long { font-size: 76px; }
+  .reader-inner { padding-left: 28px; padding-right: 24px; }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .app-shell { height: auto; min-height: 100dvh; }
+  .cols { flex-direction: column; }
+  .rail { width: auto; border-right: 0; border-bottom: 1px solid var(--rule); flex-direction: row; flex-wrap: wrap; align-items: flex-end; gap: 4px 20px; overflow: visible; padding: 20px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); }
+  .numeral, .numeral.is-long { font-size: 72px; margin: 0; }
+  .leaf-rule, .rail .chapter-grid, .rail .chapters-label { display: none; }
+  .reader { overflow: visible; }
+  .reader-inner { padding: 28px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+  .atlas { flex: 0 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 20px max(16px, env(safe-area-inset-left, 0px)); overflow: hidden; animation: atlasRise 0.5s var(--ease-out) backwards; }
+  .atlas-card { max-height: none; }
+  .map-area { flex: 0 0 auto; height: 300px; }
+  .stop, .echoes { flex: 0 0 auto; overflow: visible; }
+  .cols.is-expanded .atlas { padding-left: max(16px, env(safe-area-inset-left, 0px)); }
+  .cols.is-expanded .pane { flex-direction: column; }
+  .cols.is-expanded .pane > .map-area { flex: 0 0 auto; height: 60dvh; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .cols.is-expanded .pane > .stop { flex: 0 0 auto; }
+  .cols.is-expanded .echo-cols { grid-template-columns: minmax(0, 1fr); }
+  .cols.is-expanded .echoes { grid-template-columns: minmax(0, 1fr); }
+  .cols.is-expanded .echo-side { position: static; }
+  .mark-word { width: auto; border-right: 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: 8px; font-size: 20px; }
+  .bar-main { padding-left: 4px; padding-right: max(12px, env(safe-area-inset-right, 0px)); }
+}
+@media (max-width: 560px) {
+  .mark-word span { display: none; }
+  .nav { gap: 0; }
+  .pill { padding: 0 10px; }
+  .verses { font-size: 21px; }
+  .v { grid-template-columns: 22px minmax(0, 1fr); column-gap: 12px; }
+  .initial { width: 76px; height: 76px; }
+  .initial span { font-size: 72px; }
+  .gloss.inline { margin-left: 0; }
+  .title { font-size: 52px; }
+  .hit { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after, ::backdrop { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  .lamp { display: none; }
+  .tick:hover, .path-card:hover, .dot-hit:hover .dot { transform: none; }
+}
+
+/* Phones: the Atlas opens over the page as its own full screen, above the tab bar. */
+@media (max-width: 900px) {
+  .atlas {
+    position: fixed; inset: 0 0 calc(66px + env(safe-area-inset-bottom, 0px)) 0; z-index: 25; background: var(--vellum);
+    padding: max(10px, env(safe-area-inset-top, 0px)) max(10px, env(safe-area-inset-right, 0px)) 10px max(10px, env(safe-area-inset-left, 0px));
+    display: flex; overflow: hidden;
+  }
+  .atlas-card { flex: 1 1 auto; overflow-y: auto; }
+  .pane { flex: 0 0 auto; }
+  .expand-btn { display: none; }
+  .rail-nav { display: none; }
+  .picker { margin-left: 0; padding: 0 10px; height: 40px; }
+  .picker-sec { display: none; }
+  .picker b { font-size: 19px; }
+}
+@media (max-width: 1100px) { .mark-word span { display: none; } .mark-word { width: auto; padding-right: 22px; } }

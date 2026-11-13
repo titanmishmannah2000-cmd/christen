@@ -1,0 +1,14 @@
+/* ── A painting on its own: dark room, nothing over the picture ── */
+dialog.alone { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; overflow: hidden; }
+dialog.alone::backdrop { background: rgba(8, 6, 4, 0.92); }
+dialog.alone[open] { animation: fadeIn 0.45s var(--ease-out) both; }
+dialog.alone[open]::backdrop { animation: backdropIn 0.45s var(--ease-out) both; }
+dialog.alone.is-closing, dialog.alone.is-closing::backdrop { animation: backdropOut 0.26s var(--ease-in) both; }
+.alone-osd { position: absolute; inset: 56px 24px 52px; }
+.alone-msg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-style: italic; font-size: 20px; color: #E9E2D2; pointer-events: none; }
+.alone-caption { position: absolute; left: 0; right: 0; bottom: 16px; text-align: center; font-size: 13px; color: rgba(233, 226, 210, 0.8); padding: 0 64px; }
+.alone-caption i { font-family: var(--display); font-size: 16px; color: #F4EEE0; }
+.alone-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(233, 226, 210, 0.35); background: rgba(20, 16, 10, 0.5); color: #F4EEE0; display: grid; place-items: center; cursor: pointer; transition: background-color var(--t-hover) var(--ease-out); }
+.alone-close:hover { background: rgba(60, 50, 36, 0.7); }
+@media (max-width: 560px) { .alone-osd { inset: 56px 0 64px; } .alone-caption span { display: none; } }
+.openseadragon-message { display: none; } /* our own plate-msg / alone-msg says it in plain words */

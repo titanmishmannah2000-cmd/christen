@@ -1,0 +1,12 @@
+/* ── Welcome: the verse of the day ── */
+.welcome { position: fixed; inset: 0; z-index: 40; background: var(--vellum); overflow-y: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px max(20px, env(safe-area-inset-right, 0px)) 40px max(20px, env(safe-area-inset-left, 0px)); text-align: center; }
+.welcome-mark { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: 0.32em; }
+.welcome .leaf-rule { margin: 26px auto 34px; }
+.welcome-verse { max-width: 720px; background: none; border: 0; cursor: pointer; font-family: var(--display); font-style: italic; font-weight: 500; font-size: clamp(26px, 4vw, 40px); line-height: 1.35; color: var(--ink); min-height: 1.4em; text-wrap: balance; }
+.welcome-verse:hover { color: var(--lapis); }
+.welcome-ref { margin-top: 18px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; color: var(--rubric); text-transform: uppercase; }
+.welcome-actions { margin-top: 44px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.btn-primary { height: 48px; padding: 0 32px; border-radius: 999px; border: 0; background: var(--ink); color: var(--vellum); font-size: 14px; font-weight: 500; cursor: pointer; }
+.btn-primary:hover { background: var(--lapis); }
+
+/* ── Narrow screens ── */

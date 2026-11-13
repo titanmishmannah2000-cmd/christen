@@ -1,0 +1,490 @@
+/* ════ The Cyanotype print ════
+   The approved mockup (theme-research-2026-11-12/cyanotype-complete.html), applied to the app.
+   Every colour comes from the book being read, worked out in lib/cyanotype/theme.js and set
+   on <html>: --book (the book's true colour), --paper, --ink, --ash (soft text), --dim,
+   --rule, --hi (second colour, as printed), --nav (third colour, or the second), --pl
+   (the plant), and the same with a --p- prefix for type printed on the coating behind
+   the chapter opening. This file comes last and refines the ones before it. */
+
+:root {
+  --display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --ui: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --mono: 'Red Hat Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --grain-alpha: 0;
+}
+body { background: var(--paper, var(--vellum)); font-family: var(--ui); font-size: 15px; }
+html[data-print="full"] body { background: var(--paper); }
+/* The brushed coating under the whole page ("Whole page"). */
+.print-ground { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; display: block; }
+body::after { display: none; }
+.lamp { display: none; }
+
+/* Small labels, menus and tabs: Red Hat Mono, spaced, in the soft ink. */
+.lab, .eyebrow, .eyebrow.caps, .nav .pill, .version, .picker-sec, .canon .foot-l, .canon .foot-r, .rail .chs, .tabbar button {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400; letter-spacing: 0.06em; color: var(--ash); text-transform: none;
+}
+.eyebrow.caps { text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.08em; }
+.lab { font-size: 10.5px; letter-spacing: 0.08em; }
+:focus-visible { outline: 2px solid var(--nav); outline-offset: 3px; border-radius: 0; }
+::selection { background: var(--mark); }
+
+/* ── The page: inset from the edges like a print, in three rows ── */
+@media (min-width: 901px) {
+  .app-shell { padding: 40px 46px 34px; }
+}
+.bar { height: 54px; border-bottom: 1px solid var(--rule); background: none; }
+.mark-word {
+  width: 200px; padding: 0; border: 0; justify-content: flex-start;
+  font-family: var(--display); font-style: italic; font-weight: 400; font-size: 22px; letter-spacing: 0; color: var(--ink);
+}
+.bar-main { padding: 0; gap: 14px; }
+.picker { height: auto; padding: 0 0 0 34px; margin: 0; gap: 14px; border: 0; border-radius: 0; align-items: baseline; }
+.picker:hover { background: none; border-color: transparent; }
+.picker:hover b { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.picker-sec::after { content: none; }
+.picker b { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 21px; color: var(--ink); }
+.version { height: auto; padding: 1px 7px; border: 1px solid var(--rule); border-radius: 0; color: var(--ink); align-self: center; }
+.version:hover { border-color: var(--ink); color: var(--ink); }
+.nav { gap: 24px; }
+.nav .pill { height: auto; padding: 4px 0; border-radius: 0; background: none; }
+.nav .pill:hover { background: none; color: var(--ink); }
+.nav .pill.is-on { color: var(--nav); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.nav .count { background: var(--hi); color: var(--paper); border-radius: 0; font-family: var(--mono); }
+
+/* ── The rail ── */
+.rail { width: 200px; padding: 28px 24px 0 0; gap: 4px; border-right: 1px solid var(--rule); }
+.rail .num { font-family: var(--display); font-weight: 300; font-size: 104px; line-height: 0.9; color: var(--ink); animation: riseIn 0.55s var(--ease-out) both; }
+.rail .num.is-long { font-size: 84px; }
+.rail .of { font-family: var(--display); font-style: italic; font-size: 15px; color: var(--ash); }
+.rail .leaf { width: 30px; height: 2px; background: var(--nav); margin: 16px 0 14px; box-shadow: 0 0 6px var(--nav); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 7px 14px; margin: 0; align-items: baseline; }
+.facts dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--ash); }
+.facts dd { margin: 0; font-family: var(--display); font-style: italic; font-size: 15px; color: var(--ink); }
+.rail .chs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 22px; }
+.rail .chs button { padding: 5px 0; text-align: center; cursor: pointer; border: 0; background: none; font: inherit; color: var(--ash); }
+.rail .chs button:hover { color: var(--ink); }
+.rail .chs .on { color: var(--nav); outline: 1px solid var(--nav); outline-offset: -1px; }
+
+/* ── The reading column ── */
+.reader-inner { padding: 0 48px 72px 78px; }
+.title-block { position: relative; }
+.opening {
+  position: relative; height: 340px; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: 22px; padding-right: 236px; color: var(--p-ink);
+}
+.opening .kick, .opening .chap { font-family: var(--display); font-style: italic; font-size: 16px; color: var(--p-ash); position: relative; }
+.opening .ttl {
+  margin: 2px 0 6px; font-family: var(--display); font-style: italic; font-weight: 300; font-size: 88px; line-height: 0.95;
+  letter-spacing: -0.02em; position: relative; text-wrap: balance; color: var(--p-ink);
+}
+.opening .ttl.is-rtl { text-align: right; }
+.opening canvas.photo { position: absolute; right: 14px; top: 6px; width: 187px; height: 140px; }
+.opening .cblock { position: absolute; right: 0; top: 152px; width: 216px; display: flex; flex-direction: column; gap: 3px; }
+.opening.bare .cblock { top: 40px; }
+.cblock .lab { font-size: 10px; color: var(--p-ash); }
+.cblock .cn { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 27px; line-height: 1.05; }
+.cblock .cw { font-family: var(--display); font-style: italic; font-size: 13.5px; line-height: 1.35; margin-bottom: 2px; }
+.c2 { display: flex; gap: 8px; align-items: flex-start; margin-top: 6px; padding-top: 7px; border-top: 1px solid var(--p-rule); }
+.c2 i { width: 12px; height: 12px; flex: none; margin-top: 4px; outline: 1px solid var(--p-rule); }
+.c2 > span { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.cn2 { font-family: var(--display); font-style: italic; font-size: 16px; line-height: 1.2; color: var(--p-hi); }
+.c3 { border-top: 0; padding-top: 0; margin-top: 4px; }
+.c3 .cn2 { color: var(--p-nav); }
+/* Light and dark paper: the opening sits on its own brushed panel of the book's colour. */
+.app-shell:not([data-print="full"]) .opening { margin: 0 -48px 0 -78px; padding: 0 284px 22px 78px; }
+.app-shell:not([data-print="full"]) .opening.bare { padding-right: 284px; }
+.app-shell:not([data-print="full"]) .opening .cblock { right: 48px; }
+.app-shell:not([data-print="full"]) .opening canvas.photo { right: 62px; }
+.opening canvas.panel { position: absolute; inset: -6px -10px -4px -14px; width: calc(100% + 24px); height: calc(100% + 10px); }
+
+.title-translation { margin: 16px 0 0; font-size: 16px; color: var(--ash); }
+.title-actions { margin-top: 16px; }
+.hair { margin: 22px 0 26px; }
+
+/* The Bible text. */
+.verses { font-family: var(--display); font-weight: 300; font-size: calc(19px * var(--text-scale, 1)); line-height: 1.75; color: var(--ink); }
+.v { grid-template-columns: 22px minmax(0, 1fr); column-gap: 14px; padding: 0 0 12px; }
+.v .n { padding-top: 9px; font-family: var(--mono); font-size: 10.5px; font-weight: 400; color: var(--dim); }
+.v.is-open .t, .v.is-reading .t { font-weight: 400; }
+.v.is-open .n, .v:hover .n { color: var(--hi); }
+.v.is-open .n::after { color: var(--hi); }
+.app-shell[data-theme="dark"] .v.is-open .t { position: relative; }
+.app-shell[data-theme="dark"] .v.is-open .t::before { content: ""; position: absolute; left: -24px; right: -28px; top: -8px; bottom: -6px; background: radial-gradient(ellipse at 45% 50%, var(--glow), #0000 72%); filter: blur(3px); z-index: -1; }
+.app-shell[data-theme="light"] .v.is-open .words { background: linear-gradient(#0000 58%, var(--mark) 58%); }
+.section-head { font-family: var(--display); font-style: italic; font-weight: 400; color: var(--ash); }
+.superscription, .douay-note, .status, .colophon, .margin-hint { font-family: var(--display); }
+.colophon { font-size: 17px; color: var(--ash); }
+
+/* The first letter: a plain box ruled in the second colour, the letter in italic. */
+.initial-cap .ground, .initial-cap .streak, .initial-cap .dia, .initial-cap .glow, .initial-cap .bright, .initial-cap .line.outer { display: none; }
+.initial-cap .line.inner { stroke: var(--hi) !important; }
+.initial-cap .letter { fill: var(--hi) !important; font-family: var(--display) !important; font-style: italic; font-weight: 300 !important; }
+.initial-cap { width: 86px; height: 86px; margin: 4px 12px 0 -2px; }
+
+/* Buttons that read as words: square, ruled, Red Hat Mono. */
+.chip {
+  height: auto; min-height: 30px; padding: 4px 10px; border-radius: 0; border: 1px solid var(--rule); background: transparent;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400; letter-spacing: 0.04em; color: var(--ink);
+}
+.chip:hover { border-color: var(--nav); color: var(--nav); }
+.chip.solid, .chip[aria-pressed="true"], .chip.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.link-btn { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 15px; color: var(--nav); }
+.pill { border-radius: 0; }
+.pill.solid { background: var(--ink); color: var(--paper); }
+.icon-btn { border-radius: 0; border-color: var(--rule); color: var(--ink); }
+.icon-btn:hover { border-color: var(--nav); color: var(--nav); }
+
+/* The margin: the open verse's note, or the book's painting, framed in the print. */
+.gloss { border-top: 1px solid var(--hi); font-family: var(--display); font-size: 14.5px; color: var(--ash); }
+.gloss h3 { font-weight: 400; color: var(--ink); }
+.gloss .teaser b, .gloss .ref { font-family: var(--mono); font-weight: 400; color: var(--hi); }
+.plate { border-top: 1px solid var(--rule); }
+.plate .frame { border: 1px solid var(--rule); background: transparent; padding: 8px; }
+.plate .frame-hint { border-radius: 0; font-family: var(--mono); font-size: 10.5px; background: var(--paper); }
+.plate .frame:hover .frame-hint, .plate .frame:focus-visible .frame-hint { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.plate figcaption { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--ash); }
+.plate figcaption i { font-family: var(--display); font-style: italic; font-size: 16px; letter-spacing: 0; color: var(--ink); }
+
+/* ── The book strip along the foot ── */
+.canon {
+  height: 54px; padding: 0; gap: 0; display: grid; grid-template-columns: 200px minmax(0, 1fr) 160px; align-items: center;
+  border-top: 1px solid var(--rule); background: none;
+}
+.canon .foot-l em, .canon .foot-r em { display: block; font-family: var(--display); font-style: italic; font-size: 15px; color: var(--ink); letter-spacing: 0; }
+.canon .foot-r { text-align: right; }
+.canon .strip { display: grid; gap: 2px; height: 20px; margin: 0 22px; }
+.canon .strip button { padding: 0; border: 0; cursor: pointer; opacity: 0.38; outline: 1px solid var(--rule); outline-offset: -1px; min-width: 0; transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out); }
+.canon .strip button:hover, .canon .strip button:focus-visible { opacity: 1; transform: scaleY(1.2); }
+.canon .strip button.seen { opacity: 0.8; }
+.canon .strip button.is-thread { opacity: 1; outline: 1px solid var(--hi); }
+.canon .strip button.on { opacity: 1; outline: 2px solid var(--nav); outline-offset: 1px; box-shadow: 0 0 8px var(--nav); }
+
+/* ── The Atlas, as the side panel of the print ── */
+@media (min-width: 901px) {
+  .atlas { flex: 0 0 clamp(320px, 28vw, 420px); padding: 0; }
+  .cols:not(.is-expanded) .atlas-card { width: clamp(320px, 28vw, 420px); }
+}
+.atlas-card { background: none; border: 0; border-left: 1px solid var(--rule); border-radius: 0; padding-left: 26px; }
+.atlas-head { padding: 18px 0 14px; border-bottom: 0; gap: 20px; }
+.atlas-tabs { display: flex; gap: 20px; }
+.atlas-tab { height: auto; padding: 2px 0; border-radius: 0; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; font-weight: 400; color: var(--ash); }
+.atlas-tab[aria-selected="true"] { color: var(--nav); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.tab-ink { display: none; }
+.atlas-tools { gap: 6px; }
+
+/* ── Sheets and cards: square, ruled, on the print's paper ── */
+dialog, .sheet, .sheet-panel { border-radius: 0 !important; }
+.seg button { border-radius: 0 !important; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+
+/* ── Phones ── */
+@media (max-width: 900px) {
+  .app-shell { padding: 0; }
+  .bar { height: 56px; padding: 0 18px; }
+  .rail { display: none !important; }
+  .mark-word { width: auto; font-size: 20px; padding-right: 8px; }
+  .picker { padding-left: 10px; }
+  .rail { width: auto; padding: 16px; border-right: 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+  .rail .num { font-size: 56px; }
+  .rail .leaf, .rail .facts, .rail .chs { display: none; }
+  .reader-inner { padding: 6px 18px 40px; }
+  .opening { height: 322px; padding-right: 0; padding-bottom: 12px; }
+  .opening .ttl { font-size: 64px; }
+  .opening .kick, .opening .chap { font-size: 13.5px; }
+  .opening canvas.photo { right: 0; top: 4px; width: 124px; height: 93px; }
+  .opening .cblock { top: 10px; left: 0; right: auto; width: 150px; gap: 2px; }
+  .opening .cblock .lab { font-size: 8.5px; }
+  .opening .cblock .cn { font-size: 17px; }
+  .opening .cblock .cw { font-size: 10.5px; line-height: 1.3; }
+  .opening .c2 { margin-top: 3px; padding-top: 4px; gap: 6px; }
+  .opening .c2 i { width: 10px; height: 10px; margin-top: 2px; }
+  .opening .cn2 { font-size: 12px; }
+  .app-shell:not([data-print="full"]) .opening { margin: -8px -18px 14px; padding: 0 18px 12px; }
+  .app-shell:not([data-print="full"]) .opening .cblock { left: 18px; right: auto; }
+  .app-shell:not([data-print="full"]) .opening canvas.photo { right: 18px; }
+  .app-shell:not([data-print="full"]) .opening canvas.panel { inset: 0; width: 100%; height: 100%; }
+  .canon { height: auto; grid-template-columns: minmax(0, 1fr); padding: 8px 18px; }
+  .canon .foot-l, .canon .foot-r { display: none; }
+  .canon .strip { margin: 0; height: 12px; gap: 1px; }
+  .tabbar { background: var(--paper); backdrop-filter: none; border-top: 1px solid var(--rule); }
+  .tabbar button { min-height: 44px; border-radius: 0; font-size: 10.5px; color: var(--ash); }
+  .tabbar button.is-on { background: none; color: var(--nav); text-decoration: underline; text-underline-offset: 4px; }
+  .atlas { background: var(--paper); }
+  .atlas-card { border-left: 0; padding-left: 0; }
+}
+
+/* ── Everything square, as in the print: no pills, no rounded cards ── */
+*:not([class*="dot"]):not(.size-steps span):not(.leaflet-marker-icon), *::before, *::after { border-radius: 0 !important; }
+.depth, .word-chip, .path-step, .path-card, .map-style-btn { border-radius: 0; box-shadow: none; }
+.depth { background: none; padding: 0; }
+.depth button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; height: 26px; }
+.depth button[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.word-chip { font-family: var(--mono); font-size: 11.5px; border-style: solid; }
+.word-chip[aria-expanded="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.term { text-decoration-color: color-mix(in srgb, var(--hi) 70%, transparent); }
+.root-word { color: var(--hi); }
+/* The chapter brief: a ruled note under the opening, not a card with a coloured bar. */
+.brief, .brief.is-deeper { border-left: 0; border-top: 1px solid var(--rule); padding: 12px 0 2px; font-size: 15px; color: var(--ash); }
+.brief-sum { font-weight: 300; font-size: 19px; color: var(--ink); }
+.brief-book b, .term-def b { font-weight: 500; }
+.path-step { background: none; }
+
+/* The opening keeps to the reading width, so the plant stays beside its title. */
+@media (min-width: 901px) {
+  .opening { max-width: 860px; }
+  .app-shell:not([data-print="full"]) .opening { max-width: calc(860px + 126px); }
+}
+
+/* ── Sheets and dialogs: the same two faces as the page. Headings are mono labels,
+   titles are light italics, numbers and references are in the mono. ── */
+.sheet-title, .mem-title { font-weight: 300; font-style: italic; }
+.set-row legend, .book-sec h3, .pick-books h3, .sheet-sub, .hit .ref, .saved-item .go b, .book small, .seg-n, kbd {
+  font-family: var(--mono); font-weight: 400; letter-spacing: 0.06em;
+}
+.set-row legend, .set-label, .book-sec h3, .pick-books h3 { font-family: var(--mono); font-weight: 400; letter-spacing: 0.06em; font-size: 11px; text-transform: uppercase; color: var(--ash); }
+.hit .ref, .saved-item .go b { color: var(--hi); font-size: 11px; }
+.book[aria-current] { color: var(--hi); }
+.seg { background: transparent; }
+.seg button { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.04em; }
+.close { border-color: var(--rule); }
+.close:hover, .pick-find:focus { border-color: var(--nav); color: var(--nav); }
+.pick-find { background: transparent; }
+.set-preview { background: transparent; font-weight: 300; }
+.empty { font-weight: 300; }
+.toast { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+.mode-badge { font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.04em; background: none; border: 1px solid var(--rule); color: var(--ink); }
+.mode-badge span { color: var(--ash); }
+.mode-badge:hover { border-color: var(--nav); color: var(--nav); }
+.brief-top .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ash); }
+
+/* ── Welcome: the verse of the day, on the print itself ── */
+.welcome { background: transparent; }
+.app-shell:not([data-print="full"]) .welcome { background: var(--paper); }
+.welcome-mark { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 30px; letter-spacing: 0; }
+.welcome .leaf-rule { background: var(--hi); height: 2px; width: 30px; }
+.welcome-verse { font-weight: 300; }
+.welcome-verse:hover, .link-btn:hover { color: var(--nav); }
+.welcome-ref { font-family: var(--mono); font-weight: 400; letter-spacing: 0.08em; color: var(--hi); }
+.btn-primary { height: 44px; padding: 0 26px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.06em; }
+.btn-primary:hover { background: var(--nav); border-color: var(--nav); color: var(--paper); }
+.link-btn { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+.path-card { background: transparent; }
+.path-card:hover, .path-card.is-active { border-color: var(--nav); }
+.path-title { font-weight: 400; }
+.path-meta { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.04em; color: var(--ash); }
+.sheet-h { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); }
+
+/* ── The Atlas tabs, as in the mockup's side panel ── */
+@media (min-width: 901px) { .atlas { position: relative; } }
+.atlas-card { position: relative; overflow: hidden; }
+.atlas-head { flex-wrap: nowrap; align-items: baseline; }
+.atlas-tabs { gap: 14px; flex-wrap: wrap; row-gap: 8px; }
+.atlas-tab { transition: color 0.16s var(--ease-out); }
+.atlas-tab:hover, .atlas-word:hover { color: var(--nav); }
+.atlas-tab .n { margin-left: 4px; font-size: 10px; color: var(--hi); }
+.atlas-tools { margin-left: auto; display: flex; gap: 14px; }
+.atlas-word { border: 0; background: none; padding: 2px 0; cursor: pointer; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ash); white-space: nowrap; }
+.atlas-word[aria-pressed="true"] { color: var(--nav); }
+.atlas-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; position: relative; }
+.pane:not([hidden]) { animation: none; }
+.atl { display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 8px 18px 0; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+.atl-h { display: flex; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; color: var(--ash); text-transform: uppercase; }
+.atl-t { font-family: var(--display); font-style: italic; font-weight: 300; font-size: 26px; line-height: 1.1; color: var(--ink); margin: 0; }
+.atl-none { font-style: italic; font-size: 15px; line-height: 1.45; color: var(--ash); margin: 6px 0 0; }
+.atl-more { align-self: flex-start; border: 0; background: none; padding: 6px 0; cursor: pointer; font-family: var(--display); font-style: italic; font-size: 14px; color: var(--nav); text-align: left; }
+.atl-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+.atl .lab { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ash); }
+.jmap { display: block; max-width: 100%; }
+
+/* Colour */
+.sw { margin-top: 10px; border-top: 1px solid var(--rule); }
+.sw div { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); }
+.sw i { width: 34px; height: 24px; display: block; border: 1px solid var(--rule); }
+.sw span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--ash); }
+.sw span b { display: block; font-family: var(--display); font-style: italic; font-weight: 400; font-size: 15px; letter-spacing: 0; color: var(--ink); }
+.sw em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--ink); text-align: right; }
+
+/* Journey */
+.stops { list-style: none; margin: 0; padding: 0; }
+.stops li { border-bottom: 1px solid var(--rule); }
+.stops button { width: 100%; display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 4px 0; border: 0; background: none; cursor: pointer; text-align: left; color: var(--ink); }
+.stops .n, .stops .rf { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; color: var(--ash); }
+.stops .pl { font-family: var(--display); font-style: italic; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stops li.on .pl, .stops li.on .n, .stops button:hover .pl { color: var(--nav); }
+
+/* Echoes: the columns map */
+.echoes { padding: 0 8px 18px 0; gap: 12px; }
+.echo-how { background: none; border: 0; padding: 0; font-style: italic; font-size: 14px; line-height: 1.45; color: var(--ash); }
+.echo-how b { font-weight: 400; color: var(--ink); }
+.echo-sub { font-style: italic; color: var(--ash); }
+.echo-verse { border-left: 0; border-top: 1px solid var(--rule); padding: 8px 0 0; }
+.echo-verse .eyebrow { color: var(--hi); }
+.echo-verse p { font-weight: 300; }
+.echo-map { padding: 0; border: 0; background: none; box-shadow: none; }
+.em-box { min-height: 0; touch-action: auto; }
+.echo-map svg { font-family: var(--display); }
+.em-side { font-family: var(--mono); font-size: 8.5px; font-weight: 400; letter-spacing: 0.06em; fill: var(--ash); }
+.em-guide { stroke: var(--ink); stroke-opacity: 0.1; }
+.em-guide.g0 { stroke-opacity: 0.16; }
+.em-line { stroke: var(--ink); stroke-dasharray: none; stroke-dashoffset: 0; animation: none; transition: opacity 0.2s var(--ease-out); }
+.em-line.on { stroke: var(--nav); }
+.em-star { cursor: pointer; opacity: 1; animation: none; }
+.em-dot { stroke: var(--ink); stroke-width: 1; transition: stroke 0.2s var(--ease-out); }
+.em-star.on .em-dot, .em-star:hover .em-dot { stroke: var(--nav); stroke-width: 2; transform: none; }
+.em-name { font-family: var(--display); font-style: italic; font-weight: 400; fill: var(--ink); stroke: none; }
+.em-star.on .em-name, .em-star:hover .em-name { fill: var(--nav); }
+.echo-map.has-focus .em-star:not(.on) { opacity: 0.55; }
+.em-med { stroke: var(--nav); stroke-width: 1.5; }
+.em-med-t { font-family: var(--display); font-style: italic; }
+.em-key { justify-content: flex-start; font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--ash); }
+.echo-h { font-style: italic; font-weight: 300; font-size: 22px; }
+.echo-h span { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); }
+.echo { border-left: 0; }
+.echo.is-lit .echo-ref, .echo.is-open .echo-ref { color: var(--nav); }
+.echo.is-open { background: none; }
+.echo-ref { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 16px; }
+.echo-text { font-weight: 300; }
+.echo-from, .echo-str em { font-family: var(--mono); font-style: normal; font-size: 10px; letter-spacing: 0.05em; color: var(--ash); }
+.threads-src { font-size: 12px; color: var(--ash); }
+.threads-src a { color: var(--nav); }
+.echo-str i { border-radius: 0; background: var(--rule); }
+.echo-str.s1 i:nth-child(-n+1), .echo-str.s2 i:nth-child(-n+2), .echo-str.s3 i:nth-child(-n+3) { background: var(--hi); }
+.echo > button:hover .echo-ref, .echo > button:focus-visible .echo-ref { color: var(--nav); }
+
+/* Timeline: the card for the passage being read, printed as in the mockup */
+.when { padding: 0 8px 18px 0; gap: 10px; }
+.when > .echo-how { font-size: 13.5px; }
+.when-card { padding: 0; border: 0; background: none; box-shadow: none; gap: 6px; }
+.when-title { font-weight: 300; font-style: italic; font-size: 26px; }
+.when-date { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 15px; line-height: 1.35; }
+.tl-disputed { font-style: normal; font-family: var(--mono); font-weight: 400; font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--hi); border: 1px solid var(--rule); padding: 1px 5px; }
+.when-strip { margin: 6px 0 4px; }
+.when-track { height: 16px; margin: 0; border-bottom: 1px solid var(--rule); }
+.when-track::before { display: none; }
+.when-split { top: 0; bottom: -5px; border-left: 1px dashed var(--ash); opacity: 0.7; }
+.when-tick { top: auto; bottom: 0; width: 1px; height: 5px; margin: 0; border-radius: 0; background: var(--ash); opacity: 0.45; }
+.when-span { top: auto; bottom: -1px; height: 12px; margin: 0; border-radius: 0; background: var(--book); box-shadow: none; outline: 1px solid var(--nav); outline-offset: 1px; }
+.when-scale { font-family: var(--mono); font-size: 8.5px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ash); margin: 6px 0 0; }
+.when-scale span:first-child { text-align: left; }
+.when-scale span:last-child { text-align: right; }
+.when-note { font-size: 14px; line-height: 1.5; font-weight: 400; }
+.when-world, .when-rulers, .when-meets { gap: 0; margin-top: 4px; padding-top: 8px; }
+.when-world h4, .when-rulers h4, .when-meets h4, .when-meets h4.eyebrow { font-family: var(--mono); font-size: 9.5px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ash); margin-bottom: 4px; }
+.when-meet, .when-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 8px; padding: 6px 0 7px; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; background: none; text-align: left; color: var(--ink); cursor: pointer; width: 100%; }
+.when-meet:hover, .when-meet:focus-visible, .when-item:hover, .when-item:focus-visible { background: none; border-color: var(--rule); }
+.when-meet:hover b, .when-item:hover .when-wtitle, .when-ruler:hover { color: var(--nav); }
+.when-mhead { display: contents; }
+.when-where { grid-row: auto; grid-column: 1 / 3; align-self: auto; background: none; padding: 0; font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ash); }
+.when-mhead b, .when-wtitle { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 15px; line-height: 1.25; }
+.when-wdate { font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: 0.05em; color: var(--ash); align-self: baseline; white-space: nowrap; }
+.when-mtext, .when-wnote { grid-column: 1 / 3; font-family: var(--display); font-size: 13px; line-height: 1.4; color: var(--ash); white-space: normal; }
+.when-open { display: none; }
+.when-world ol { gap: 0; }
+.when-world li { animation: none; }
+.when-world li:last-child .when-item { border-bottom: 0; }
+.when-rulers p { font-family: var(--display); font-size: 14px; line-height: 1.6; color: var(--ink); }
+.when-ruler { color: var(--ink); text-decoration: none; border-bottom: 1px dotted var(--ash); }
+.when-new { border-radius: 50%; background: var(--hi); }
+.when-filters { gap: 4px; flex-wrap: wrap; overflow: visible; margin: 2px 0 4px; }
+.when-filters .chip { height: auto; padding: 2px 6px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.04em; border: 1px solid var(--rule); background: none; color: var(--ash); }
+.when-filters .chip[aria-pressed="true"] { color: var(--nav); border-color: var(--nav); background: none; }
+.when-more { font-family: var(--display); font-style: italic; font-size: 14px; letter-spacing: 0; color: var(--nav); }
+.when-none, .when-seen { font-style: italic; font-size: 14px; color: var(--ash); }
+.when-card .sources { font-size: 11.5px; line-height: 1.45; color: var(--ash); padding-top: 8px; }
+/* The tabs keep one line; when the panel is too narrow for Expand and Close beside
+   them, those two step up to a line of their own above the tabs. */
+.atlas-head { flex-wrap: wrap-reverse; row-gap: 10px; column-gap: 14px; }
+.atlas-tabs { gap: 12px; flex-wrap: nowrap; }
+.when > .echo-how { order: 2; }
+.when-new { border-radius: 50% !important; }
+
+/* Trails: ruled rows in the print's two faces, no cards */
+.trails { padding: 0 8px 18px 0; gap: 10px; }
+.trails > .echo-how, .trail-here-note { font-style: italic; font-size: 14px; color: var(--ash); }
+.trail-cards { gap: 0; border-top: 1px solid var(--rule); }
+.trail-cards li { animation: none; }
+.trail-card { padding: 9px 0; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; background: none; transform: none !important; }
+.trail-card.is-here { border-left: 0; }
+.trail-card.is-here .trail-title { color: var(--nav); }
+.trail-card:hover { border-color: var(--rule); }
+.trail-card:hover .trail-title { color: var(--nav); }
+.trail-title { font-style: italic; font-weight: 400; font-size: 18px; }
+.trail-short { font-family: var(--display); font-size: 13.5px; color: var(--ash); }
+.trail-meta, .stop-era, .stop-you { font-family: var(--mono); font-weight: 400; font-size: 10px; letter-spacing: 0.05em; color: var(--ash); }
+.stop-you { color: var(--hi); }
+.trail-h { font-style: italic; font-weight: 300; font-size: 26px; }
+.trail-intro { font-size: 14px; }
+.stop-row { animation: none; }
+.stop-row::before { border-radius: 50% !important; background: var(--ink); }
+.stop-row.nt::before { background: var(--ash); }
+.stop-row.is-here::before { background: var(--nav); box-shadow: 0 0 0 3px color-mix(in srgb, var(--nav) 30%, transparent); }
+.stop-row > button:hover .echo-ref { color: var(--nav); }
+.stop-top b { font-family: var(--mono); font-weight: 400; font-size: 10px; }
+.stop-note { color: var(--ash); }
+.trail-mark { border-radius: 50% !important; background: var(--hi); }
+
+/* ── The page lights: the overlay that the panels, the kill switch and the corridor use ── */
+.fx-root { position: fixed; inset: 0; z-index: 55; pointer-events: auto; overflow: hidden; contain: strict; }
+.fx-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; isolation: isolate; z-index: 0; }
+.fx-layer .app-shell { transition: none !important; animation: none !important; }
+.fx-layer *, .fx-layer *::before, .fx-layer *::after { animation: none !important; transition: none !important; }
+.fx-bloom { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; }
+/* While the lights are running, the new page is already finished underneath: its own
+   entrances would only show through the panels as a second animation. */
+html.fx-busy .page-in, html.fx-busy .reader, html.fx-busy .rail { animation: none !important; }
+
+/* ── The three columns on the whole page ──
+   With the book's colour behind everything, the chapter column and the Atlas take a deeper
+   wash of it (a paler one on light books), so the verses stand on the plain coat between
+   them; their labels and the chapter number take the book's second colour. */
+@media (min-width: 901px) {
+  .app-shell[data-print="full"][data-theme="dark"] .rail,
+  .app-shell[data-print="full"][data-theme="dark"] .atlas { background: rgba(0, 0, 0, 0.2); }
+  .app-shell[data-print="full"][data-theme="light"] .rail,
+  .app-shell[data-print="full"][data-theme="light"] .atlas { background: rgba(255, 255, 255, 0.38); }
+}
+.app-shell[data-print="full"] .rail .lab,
+.app-shell[data-print="full"] .rail .num,
+.app-shell[data-print="full"] .rail .facts dt,
+.app-shell[data-print="full"] .atlas .atl-h,
+.app-shell[data-print="full"] .atlas .eyebrow { color: var(--side-label); }
+
+/* The chapter column, centred in its own shaded column: the label, the number, "of …",
+   the line, the book facts (as one block, still in two columns) and the chapter numbers. */
+@media (min-width: 901px) {
+  .rail { padding: 28px 18px 0; align-items: center; text-align: center; }
+  .rail .facts { align-self: center; text-align: left; }
+  .rail .chs { align-self: stretch; }
+}
+
+/* ── Phones and the Android app: the Atlas scrolls inside itself ──
+   The open tab's pane fills the space under the tabs and scrolls; nothing inside it grows the page.
+   The Atlas reaches down to the screen's bottom edge, so no strip of the page shows above the tab bar. */
+@media (max-width: 900px) {
+  .atlas { bottom: 0; padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px)); }
+  .atlas-card { overflow: hidden; }
+  .atlas-body { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+  .atlas-body > .pane {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
+    overscroll-behavior: contain; -webkit-overflow-scrolling: touch; touch-action: pan-y;
+  }
+  .atlas-body > .pane > * { flex: 0 0 auto; min-height: auto; overflow: visible; }
+  /* The Echoes stars can still be tapped, but a finger dragging up or down scrolls the list. */
+  .em-box { touch-action: pan-y; }
+}
+/* Phones: the whole-page print bleeds 28px past every edge (PHONE_BLEED in PrintGround.jsx). */
+@media (max-width: 900px) {
+  .print-ground { inset: auto; left: -28px; top: -28px; width: calc(100vw + 56px); height: calc(100vh + 56px); }
+}
+/* Timeline, "Ruling the world then": room between the dotted lines and the key below them. */
+.when-rulers p { line-height: 1.95; }
+.when-key { display: block; margin-top: 8px; }
+/* Phones: the search box text fits its field (16px or more, so Android does not zoom in). */
+@media (max-width: 560px) {
+  .search-input { font-size: 18px; }
+}
+/* Phones: no blur behind open sheets. Blurring the whole page under every sheet as it slid in
+   made sheets stutter on Android; the shade alone still sets the sheet apart. */
+@media (max-width: 900px), (pointer: coarse) {
+  dialog::backdrop { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}

@@ -1,0 +1,41 @@
+/* Compare versions: the chapter in several Bibles, one column each, one row per verse. */
+.versions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-content: start; }
+.versions-pick { margin: 0; padding: 0; border: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.versions-pick legend { padding: 0; margin-bottom: 8px; font-size: 13px; color: var(--ink-soft); }
+
+/* On a narrow screen the columns keep a readable width and the table scrolls sideways. */
+.versions-wrap { overflow: auto; max-height: 100%; border: 1px solid var(--rule); border-radius: 12px; background: var(--leaf); }
+.versions-table { width: 100%; min-width: calc(44px + var(--cols, 2) * 240px); border-collapse: collapse; table-layout: fixed; }
+.versions-table th, .versions-table td { padding: 10px 14px; vertical-align: top; text-align: start; border-bottom: 1px solid var(--rule); }
+.versions-table td + td, .versions-table th + th { border-inline-start: 1px solid var(--rule); }
+.versions-table thead th { position: sticky; top: 0; z-index: 1; background: var(--leaf); font-weight: 400; font-size: 13px; color: var(--ink-soft); }
+.versions-table thead th b { font-family: var(--ui); font-weight: 600; color: var(--ink); letter-spacing: 0.04em; }
+.versions-table td { font-family: var(--display); font-size: 18px; line-height: 1.55; color: var(--ink); }
+.versions-n { width: 44px; text-align: end; font-family: var(--ui); font-size: 11px; font-weight: 600; color: var(--rubric); font-variant-numeric: tabular-nums; }
+.versions-table tbody th.versions-n { padding-top: 15px; }
+.versions-table tr.is-here td, .versions-table tr.is-here th { background: var(--mark); }
+.versions-title td { font-style: italic; font-size: 16px; color: var(--ink-soft); }
+.versions-own { margin-inline-end: 4px; font-family: var(--ui); font-size: 10.5px; color: var(--rubric); }
+.versions-table td.versions-none { font-family: var(--ui); font-size: 13px; color: var(--ink-soft); }
+.versions-note { margin: 0; max-width: 72ch; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+/* A small © after a version's name opens its publisher's notice under the name. */
+.versions-copy {
+  margin-inline-start: 4px; padding: 0 2px; border: 0; background: none; cursor: pointer;
+  font: 600 12px var(--ui); color: var(--ink-soft); vertical-align: super; line-height: 1;
+}
+.versions-copy:hover, .versions-copy[aria-expanded="true"] { color: var(--lapis); }
+.versions-copy-note { display: block; margin-top: 6px; font-family: var(--ui); font-size: 11.5px; line-height: 1.45; color: var(--ink-soft); direction: ltr; text-align: start; }
+
+/* On a phone two versions still fit side by side; more scroll sideways. */
+@media (max-width: 600px) {
+  .sheet-body.versions { padding-inline: 12px; }
+  .versions-table { min-width: calc(28px + var(--cols, 2) * 130px); }
+  .versions-table th, .versions-table td { padding: 8px 9px; }
+  .versions-table td { font-size: 16px; line-height: 1.5; }
+  .versions-n { width: 28px; }
+}
+
+/* Urdu reads right to left in Nastaliq, with room for its tall letters. */
+.versions-table td:lang(ur) { font-family: 'Noto Nastaliq Urdu', serif; font-size: 17px; line-height: 2.2; font-style: normal; }
+.versions-table th:lang(ur) span { font-family: 'Noto Nastaliq Urdu', serif; }
+.versions-text { white-space: pre-line; }

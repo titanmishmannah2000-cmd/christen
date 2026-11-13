@@ -1,0 +1,104 @@
+# Plain titles (our own wording) for the Robertson sections told in more than one place.
+# Sections 20 and 95 are left out: Robertson pairs them for dating, not because they tell the same event.
+3 | The family line of Jesus
+16 | Back from Egypt to Nazareth
+21 | John the Baptist begins to preach
+22 | John calls the people to turn back to God
+23 | John points to the one coming after him
+24 | Jesus is baptized
+25 | Jesus is tempted in the wilderness
+34 | Jesus goes back to Galilee
+37 | Jesus begins to preach in Galilee
+41 | Jesus calls the first disciples
+42 | An unclean spirit driven out at Capernaum
+43 | Peter’s mother-in-law and many others healed
+44 | Jesus preaches throughout Galilee
+45 | A man with leprosy is healed
+46 | A paralysed man is forgiven and healed
+47 | Jesus calls Matthew (Levi)
+48 | A question about fasting
+50 | Lord of the Sabbath
+51 | A man with a withered hand healed on the Sabbath
+52 | Crowds follow Jesus by the lake
+53 | Jesus chooses the twelve
+54 | The Sermon on the Mount and on the plain
+55 | The centurion’s servant
+57 | John the Baptist’s question from prison
+61 | Jesus is accused of working by Beelzebul
+63 | Jesus’ true family
+64 | Parables by the lake
+65 | Jesus calms the storm
+66 | The man with many demons
+67 | Jairus’ daughter and the woman who touched his cloak
+69 | Jesus rejected at Nazareth
+70 | The twelve are sent out
+71 | The death of John the Baptist
+72 | Five thousand fed
+73 | Jesus goes up the mountain to pray
+74 | Jesus walks on the water
+75 | Healings at Gennesaret
+77 | What makes a person unclean
+78 | The Canaanite (Syrophoenician) woman
+79 | Four thousand fed
+80 | The demand for a sign
+81 | The yeast of the Pharisees
+82 | Peter says Jesus is the Christ
+83 | Jesus foretells his death; take up your cross
+84 | The Son of Man coming in his kingdom
+85 | The transfiguration
+86 | Elijah has come
+87 | A boy with an evil spirit healed
+88 | Jesus again foretells his death
+90 | Who is the greatest?
+91 | Causing others to stumble
+93 | The cost of following Jesus
+122 | A question about divorce
+123 | Jesus blesses the little children
+124 | The rich young ruler
+125 | Jesus foretells his death a third time; James and John’s request
+126 | Blind men healed at Jericho
+128b | Jesus rides into Jerusalem
+129 | The fig tree and the cleansing of the temple
+131 | The withered fig tree; faith and prayer
+132 | Jesus’ authority questioned; the tenants
+133 | Paying taxes to Caesar
+134 | A question about the resurrection
+135 | The greatest commandment
+136 | Whose son is the Christ?
+137 | Warnings against the scribes and Pharisees
+138 | The widow’s offering
+139 | Jesus speaks of the end of the age
+140 | The plot to kill Jesus
+141 | Jesus anointed at Bethany
+142 | Judas agrees to betray Jesus
+143 | Preparing the Passover
+144 | Jesus at the table with the twelve
+146 | Jesus names his betrayer
+147 | Jesus foretells Peter’s denial
+148 | The Lord’s Supper
+152 | Gethsemane
+153 | Jesus is arrested
+155 | Jesus before the high priest and council
+156 | Peter denies Jesus
+157 | The council condemns Jesus at daybreak
+158 | The death of Judas
+159 | Jesus before Pilate
+161 | Pilate hands Jesus over to be crucified
+162 | The soldiers mock Jesus
+163 | The way to the cross
+164 | Jesus is crucified
+165 | The death of Jesus
+166 | What happened at his death
+167 | Jesus is buried
+168 | The women watch; the tomb is guarded
+169 | The women bring spices
+171 | The empty tomb
+172 | Peter and John run to the tomb
+173 | Jesus appears to Mary Magdalene
+176 | On the road to Emmaus
+177 | Jesus appears to Peter
+178 | Jesus appears to the disciples
+179 | Jesus appears to Thomas
+181 | The great commission
+183 | Jesus opens their minds to the Scriptures
+184 | Jesus is taken up into heaven

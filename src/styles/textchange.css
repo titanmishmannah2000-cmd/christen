@@ -1,0 +1,42 @@
+/* Changing the Bible text: the watercolour wash, the illuminated first letter and the
+   handwriting (src/lib/textChange). Only these follow Settings > When you change the Bible text. */
+.verses { position: relative; }
+.verses > .wash { position: absolute; pointer-events: none; z-index: 3; }
+.ink-layer { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.ink-layer canvas { position: absolute; }
+
+/* While the new verses write themselves, the real text waits invisibly underneath, then
+   fades in under the drawn ink before the ink lifts away. */
+.verses[data-writing] > div:not([data-inked]) .v .words,
+.verses[data-writing] > div:not([data-inked]) .section-head,
+.verses[data-writing] > div:not([data-inked]) .v .n { opacity: 0; }
+.verses[data-writing] > div[data-inked] .v .words,
+.verses[data-writing] > div[data-inked] .section-head { opacity: 1; transition: opacity 0.4s ease; }
+.verses > div[data-pending] { opacity: 0; transition: opacity 0.3s ease; }
+
+/* The illuminated first letter, drawn as SVG: a 92px box with its double gold rule. */
+.initial-cap { float: left; width: 104px; height: 104px; margin: 0 10px -2px -6px; overflow: visible; }
+.initial-cap.is-rtl { float: right; margin: 0 -6px -2px 10px; }
+/* The brush marks show only while the blue is being painted in (see cap.js). */
+.initial-cap .streak { opacity: 0; }
+@media (max-width: 560px) {
+  .initial-cap { width: 86px; height: 86px; margin: 0 8px -2px -5px; }
+  .initial-cap.is-rtl { margin: 0 -5px -2px 8px; }
+}
+
+/* Skip: ends the animation, and the text simply fades in. It rides along the bottom of
+   the reading column (sticky), clear of the book strip and the phone's tab bar. */
+.skip-anim {
+  position: sticky; z-index: 55; bottom: 22px; display: block; margin: -40px auto 0; width: max-content;
+  height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--rule); background: var(--leaf); color: var(--ink);
+  font-family: var(--ui); font-size: 13px; font-weight: 500; cursor: pointer; box-shadow: 0 10px 30px rgba(20, 15, 8, 0.16);
+}
+.skip-anim:hover { border-color: var(--lapis); color: var(--lapis); }
+@media (max-width: 900px) {
+  .skip-anim { bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* On narrow screens the verse's notes open inside the verses. They are in the menu
+   language, so they read left to right even when the Bible text is Urdu. */
+.gloss { direction: ltr; text-align: start; }
+.gloss :lang(ur) { direction: rtl; }

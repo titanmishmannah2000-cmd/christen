@@ -1,0 +1,26 @@
+/* The Bible's big story: eight acts, with this book's acts picked out. */
+.brief-story { margin: 8px 0 0; }
+.big-story { margin: 14px 0 4px; }
+.big-story figcaption { display: grid; gap: 4px; margin-bottom: 10px; }
+.big-story-line { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+.acts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; }
+.acts li { border-top: 3px solid var(--rule); font-family: var(--ui); font-size: 11px; color: var(--ink-soft); text-align: center; transition: border-color 0.4s var(--ease-out), color 0.4s var(--ease-out); }
+.acts li button { all: unset; box-sizing: border-box; width: 100%; display: grid; gap: 2px; justify-items: center; padding: 7px 2px 6px; border-radius: 0 0 6px 6px; cursor: pointer; transition: background-color var(--t-hover) var(--ease-out); }
+.acts li button:hover, .acts li button.is-open { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.acts li button:focus-visible { outline: 2px solid var(--lapis); outline-offset: 1px; }
+.big-story-how { font-size: 12.5px; line-height: 1.45; color: var(--ink-soft); }
+.act-note { overflow: hidden; }
+.act-note p { margin: 8px 0 0; padding: 9px 12px; border-radius: 8px; background: color-mix(in srgb, var(--ink) 5%, transparent); font-size: 13px; line-height: 1.5; color: var(--ink); }
+.act-where { color: var(--ink-soft); }
+.acts li b { font-family: var(--display); font-size: 17px; font-weight: 600; line-height: 1; }
+.acts li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.acts li.is-here { border-top-color: var(--lapis); color: var(--ink); }
+.acts.nt li.is-here { border-top-color: var(--gold); }
+.acts li.is-here b { color: var(--lapis); }
+.acts.nt li.is-here b { color: var(--gold); }
+.acts.is-every li { border-top-color: color-mix(in srgb, var(--gold) 55%, var(--rule)); }
+.big-story { container-type: inline-size; }
+@container (max-width: 560px) {
+  .acts { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 6px; }
+}
+.big-story-credit { margin: 6px 0 0; font-size: 11.5px; color: var(--ink-soft); }

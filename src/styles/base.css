@@ -1,0 +1,88 @@
+/* Christen Codex: a manuscript page set on a modern grid.
+   Bar on top; rail (chapter) | text with a gloss margin | atlas (journey + threads); the canon ribbon underneath, and a tab bar on phones. */
+:root {
+  --vellum: #F3EDE2;       /* page ground */
+  --leaf: #FBF8F1;         /* raised surfaces: cards, sheets */
+  --ink: #1C1915;          /* text */
+  --ink-soft: #5F574C;     /* secondary text, 6:1 on vellum */
+  --rule: #D6CAB4;         /* hairlines */
+  --lapis: #2C4877;        /* interaction, initials, Old Testament threads */
+  --gold: #B08A4A;         /* leaf, ornament, New Testament threads */
+  --gold-hi: #E7CB8A;      /* gold-leaf highlight */
+  --rubric: #9C3B26;       /* rubrication: verse numbers, as in manuscripts */
+  --mark: rgba(214, 178, 96, 0.38); /* illuminated (saved) verse */
+  --map-ground: #ECE3CF;
+  --map-line: #D9CCB0;
+  --map-sea: #E1D9C3;
+  --map-river: #7D93B9;
+  --initial-ground: #2C4877;
+  --shade: rgba(28, 25, 21, 0.38);
+  --lamp: rgba(255, 236, 190, 0.32);
+  --grain-alpha: 0.05;
+  /* Motion: arrive with a long soft ease-out, leave a little quicker with an ease-in. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 0.75, 0.25);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-hover: 0.22s;
+  --t-enter: 0.42s;
+  --display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --ui: 'Newsreader', Georgia, serif;
+  --hebrew: 'Frank Ruhl Libre', 'Noto Serif Hebrew', 'Times New Roman', serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --vellum: #15120E; --leaf: #1E1A15; --ink: #ECE4D4; --ink-soft: #A99E8C; --rule: #3A3328;
+    --lapis: #93AADB; --gold: #C9A363; --gold-hi: #F0D89A; --rubric: #E08A6E; --mark: rgba(201, 163, 99, 0.28);
+    --map-ground: #1B1813; --map-line: #3A3328; --map-sea: #171410; --map-river: #6F86AE; --initial-ground: #1F2F52; --shade: rgba(0, 0, 0, 0.55); --lamp: rgba(201, 163, 99, 0.07); --grain-alpha: 0.07;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --vellum: #15120E; --leaf: #1E1A15; --ink: #ECE4D4; --ink-soft: #A99E8C; --rule: #3A3328;
+  --lapis: #93AADB; --gold: #C9A363; --gold-hi: #F0D89A; --rubric: #E08A6E; --mark: rgba(201, 163, 99, 0.28);
+  --map-ground: #1B1813; --map-line: #3A3328; --map-sea: #171410; --map-river: #6F86AE; --initial-ground: #1F2F52; --shade: rgba(0, 0, 0, 0.55); --lamp: rgba(201, 163, 99, 0.07); --grain-alpha: 0.07;
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { width: 100%; height: 100%; }
+body {
+  background: var(--vellum); color: var(--ink); font-family: var(--ui); font-size: 14px;
+  -webkit-font-smoothing: antialiased; overflow: hidden;
+}
+button { font: inherit; color: inherit; }
+/* Every control eases between its states instead of snapping. */
+button, a, input {
+  transition: color var(--t-hover) var(--ease-out), background-color var(--t-hover) var(--ease-out),
+    border-color var(--t-hover) var(--ease-out), box-shadow var(--t-hover) var(--ease-out), opacity var(--t-hover) var(--ease-out),
+    text-decoration-color var(--t-hover) var(--ease-out);
+}
+body::after { /* paper grain, drawn once at start */
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+  background-image: var(--grain, none); opacity: var(--grain-alpha); mix-blend-mode: multiply;
+}
+.lamp {
+  position: fixed; width: 900px; height: 900px; left: 0; top: 0; margin: -450px 0 0 -450px;
+  border-radius: 50%; pointer-events: none; z-index: 0;
+  background: radial-gradient(closest-side, var(--lamp), transparent);
+  opacity: 0; transition: opacity 0.8s var(--ease-out);
+}
+.lamp.is-lit { opacity: 1; }
+.bar, .cols, .canon { position: relative; z-index: 1; }
+
+/* Shared entrances. `page-in` is used for anything that arrives with a new chapter. */
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.page-in { animation: pageIn 0.6s var(--ease-out) both; }
+.verses.page-in { animation-duration: 0.75s; animation-delay: 0.06s; }
+.colophon.page-in { animation-delay: 0.2s; }
+:focus-visible { outline: 2px solid var(--lapis); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--mark); }
+* { scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+
+.app-shell { position: relative; height: 100dvh; display: flex; flex-direction: column; }
+.eyebrow { font-size: 12.5px; font-weight: 600; letter-spacing: 0.01em; color: var(--ink-soft); text-transform: none; }
+.eyebrow.caps { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

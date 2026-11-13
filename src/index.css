@@ -1,0 +1,22 @@
+/* Christen styles, one file per part of the app. Order matters: later files refine earlier ones. */
+@import './styles/base.css';
+@import './styles/topbar.css';
+@import './styles/reader.css';
+@import './styles/atlas.css';
+@import './styles/canon.css';
+@import './styles/sheets.css';
+@import './styles/welcome.css';
+@import './styles/brief.css';
+@import './styles/responsive.css';
+@import './styles/sources.css';
+@import './styles/plate.css';
+@import './styles/memorize.css';
+@import './styles/story.css';
+@import './styles/timeline.css';
+@import './styles/bigstory.css';
+@import './styles/trails.css';
+@import './styles/painting-alone.css';
+@import './styles/compare.css';
+@import './styles/versions.css';
+@import './styles/textchange.css';
+@import './styles/cyanotype.css';

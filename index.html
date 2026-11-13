@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Christen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      // In the Android and iPhone apps the page sits between the status bar and the navigation
+      // bar or home indicator (not under them), so headers and full-screen panels are never covered.
+      if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0')
+      }
+    </script>
+    <meta name="theme-color" content="#14110E" />
+    <meta name="description" content="Christen: read the Bible inside the art and geography of its story." />
+    <link rel="preload" as="image" href="/splash/christen-launch.webp" />
+    <style>
+      /* Launch screen: the gold-foil logo on dark leather while the app starts.
+         In the Android and iPhone apps it continues the native splash, which shows the same picture. */
+      #launch{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:#14110E;transition:opacity .5s ease}
+      #launch img{width:min(60vw,48.8vh,420px);height:auto;animation:launch-in .7s ease-out both}
+      #launch.native img{animation:none}
+      #launch.out{opacity:0;pointer-events:none}
+      @keyframes launch-in{from{opacity:0}to{opacity:1}}
+      @media (prefers-reduced-motion:reduce){#launch img{animation:none}#launch{transition:none}}
+    </style>
+    <title>Christen</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="launch" role="img" aria-label="Christen"><img src="/splash/christen-launch.webp" alt="" /></div>
+    <script>
+      // Keep the launch screen up until the app has drawn its first screen (and for at least a moment,
+      // so it never just flickers), then fade it away. Gives up after 8 seconds whatever happens.
+      (function () {
+        var el = document.getElementById('launch'), root = document.getElementById('root')
+        var native = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())
+        if (native) el.className = 'native'
+        var start = performance.now(), least = native ? 400 : 1000, gone = false
+        function hide() {
+          if (gone) return
+          gone = true
+          setTimeout(function () {
+            el.classList.add('out')
+            setTimeout(function () { el.remove() }, 600)
+          }, Math.max(0, least - (performance.now() - start)))
+        }
+        new MutationObserver(function (_, mo) { if (root.firstChild) { mo.disconnect(); hide() } }).observe(root, { childList: true })
+        setTimeout(hide, 8000)
+      })()
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
